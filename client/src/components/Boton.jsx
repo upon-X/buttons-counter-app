@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../App.css'
 
 export default function Button() {
     const [buttons, setButtons] = useState([]);
@@ -51,12 +52,12 @@ export default function Button() {
     return (
         <div>
             <h1>Button Counter App</h1>
-            <div>
+            <div className='create_btns'>
                 <button onClick={handleCreateButton}>Create Button</button>
             </div>
-            <div>
+            <div className='container_btns'>
                 {buttons.map(button => (
-                    <div key={button.id}>
+                    <div className='btn_unique' key={button.id}>
                         <button onClick={() => handleButtonClick(button.id)}>
                             {`Button 
                             ${button.id}:
