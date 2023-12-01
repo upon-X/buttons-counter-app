@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import Button from './components/Boton';
 import axios from 'axios';
-axios.defaults.baseURL = "http://localhost:3000/buttons/";
+import backURL from './backURL'
+axios.defaults.baseURL = backURL;
 
 function App() {
   return (
