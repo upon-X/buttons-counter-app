@@ -54,7 +54,6 @@ app.delete("/buttons/:id", (req, res) => {
     }
 });
 
-// El port esta en el .env (acordate de cambiarlo en el front en App.jsx si lo cambias aca)
 app.listen(PORT, () => {
     console.log('Server is running on port', PORT)
 })
