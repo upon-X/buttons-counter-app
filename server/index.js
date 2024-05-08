@@ -7,31 +7,12 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "https://buttons-counter-app.vercel.app",
+    origin: "*",
     credentials: true, // If your front end needs to pass credentials
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.use((req, res, next) => {
-  // Set CORS headers
-  res.header("Access-Control-Allow-Origin", "*"); // Adjust this to match the domain in production
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-
-  // Intercept OPTIONS method for preflight
-  if ("OPTIONS" === req.method) {
-    // Respond with 200
-    res.sendStatus(200);
-  } else {
-    // Move to next middleware
-    next();
-  }
-});
 app.use(bodyParser.json());
 let buttons = [];
 let lastButtonId = 0;
