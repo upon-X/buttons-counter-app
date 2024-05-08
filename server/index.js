@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 
-app.use(cors((origin = "*")));
+app.use(cors());
 app.use(bodyParser.json());
 let buttons = [];
 let lastButtonId = 0;

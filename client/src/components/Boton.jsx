@@ -8,7 +8,7 @@ export default function Button() {
   useEffect(() => {
     const buttonData = async () => {
       try {
-        const response = await axios.get("/");
+        const response = await axios.get("");
         setButtons(response.data);
       } catch (error) {
         console.error("Error fetching buttons", error);
@@ -19,7 +19,7 @@ export default function Button() {
 
   const handleCreateButton = async () => {
     try {
-      const response = await axios.post("/");
+      const response = await axios.post("");
       setButtons([...buttons, response.data]);
     } catch (error) {
       console.error(error.message);
@@ -28,7 +28,7 @@ export default function Button() {
 
   const handleButtonClick = async (id) => {
     try {
-      const response = await axios.post(`/click/${id}`);
+      const response = await axios.post(`click/${id}`);
       const updatedButtons = buttons.map((btn) =>
         btn.id === id ? response.data : btn
       );
@@ -40,7 +40,7 @@ export default function Button() {
 
   const handleDeleteButton = async (id) => {
     try {
-      const response = await axios.delete(`/${id}`);
+      const response = await axios.delete(`${id}`);
       if (response.data.success) {
         const updatedButtons = buttons.filter((btn) => btn.id !== id);
         setButtons(updatedButtons);
