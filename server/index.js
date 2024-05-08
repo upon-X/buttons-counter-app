@@ -11,7 +11,13 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
-app.use((req, res, next) => {
+
+app.use(bodyParser.json());
+let buttons = [];
+let lastButtonId = 0;
+
+app.get("/buttons", (req, res) => {
+  res.json(buttons);
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
@@ -20,13 +26,6 @@ app.use((req, res, next) => {
   );
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
-});
-app.use(bodyParser.json());
-let buttons = [];
-let lastButtonId = 0;
-
-app.get("/buttons", (req, res) => {
-  res.json(buttons);
 });
 
 // Creamos los botones
@@ -38,6 +37,14 @@ app.post("/buttons", (req, res) => {
   };
   buttons.push(newButton);
   res.json(newButton);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
 });
 
 // Obtenemos el click de cada boton para mandarlo nuevamente al front y de aca se puede llegar a tener un registro
@@ -51,6 +58,14 @@ app.post("/buttons/click/:id", (req, res) => {
     //Manejo de errores muy pobre
     res.status(404).json({ error: "Button not found" });
   }
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
 });
 
 // Esto sirve para eliminar los botones
@@ -68,6 +83,14 @@ app.delete("/buttons/:id", (req, res) => {
   } else {
     res.status(404).json({ error: "Button not found" });
   }
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
 });
 
 app.listen(PORT, () => {
