@@ -5,8 +5,16 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 
-app.use(cors());
-
+app.use(
+  cors({
+    origin: "*", // Allow all origins
+    methods: ["GET", "POST", "DELETE"], // Specify methods
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 app.use(bodyParser.json());
 let buttons = [];
 let lastButtonId = 0;
