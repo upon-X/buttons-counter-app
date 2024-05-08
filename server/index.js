@@ -5,13 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 
-const corsOptions = {
-  origin: "https://buttons-counter-app.vercel.app", // Your front-end URL
-  methods: "GET,POST,DELETE", // Allowed methods
-  credentials: true, // To allow cookies to be sent and received
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(bodyParser.json());
 let buttons = [];
