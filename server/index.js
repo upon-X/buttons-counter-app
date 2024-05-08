@@ -6,8 +6,10 @@ const app = express();
 const cors = require("cors");
 
 const corsOptions = {
-  origin: "https://buttons-counter-app.vercel.app",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: "https://buttons-counter-app.vercel.app", // Your front-end URL
+  methods: "GET,POST,DELETE", // Allowed methods
+  credentials: true, // To allow cookies to be sent and received
+  optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
